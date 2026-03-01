@@ -1,0 +1,20 @@
+<header class="dashboard-header">
+  <h1>MediaWiki Live Stream</h1>
+  <p class="subtitle">Watching recent changes across all wikis</p>
+</header>
+
+<div class="channels">
+  @for (stream of streams; track stream.type) {
+    @if (stream.type === 'log') {
+      <app-channel
+        [type]="'log'"
+        [channel]="(stream.data$ | async) ?? []">
+      </app-channel>
+    } @else {
+      <app-channel
+        [type]="stream.type"
+        [channel]="(stream.data$ | async) ?? []">
+      </app-channel>
+    }
+  }
+</div>

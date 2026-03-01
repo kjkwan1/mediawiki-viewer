@@ -1,0 +1,37 @@
+<div class="channel-header">
+  <span class="badge">{{ type() }}</span>
+  <span class="count">{{ channel().length }} items</span>
+</div>
+
+<div class="feed">
+  @for (item of watched(); track item.id) {
+    <div class="item selected" (click)="onSelect(item)">
+      <span class="item-user">{{ item.user }}</span>
+      <span class="item-title">{{ item.title }}</span>
+      @if (item.comment) {
+        <span class="item-comment">{{ item.comment }}</span>
+      }
+      <div class="item-meta">
+        <span class="wiki">{{ item.server_name }}</span>
+        @if (item.bot) {
+          <span class="bot-tag">bot</span>
+        }
+      </div>
+    </div>
+  }
+  @for (item of channel(); track item.id) {
+    <div class="item" (click)="onSelect(item)">
+      <span class="item-user">{{ item.user }}</span>
+      <span class="item-title">{{ item.title }}</span>
+      @if (item.comment) {
+        <span class="item-comment">{{ item.comment }}</span>
+      }
+      <div class="item-meta">
+        <span class="wiki">{{ item.server_name }}</span>
+        @if (item.bot) {
+          <span class="bot-tag">bot</span>
+        }
+      </div>
+    </div>
+  }
+</div>
